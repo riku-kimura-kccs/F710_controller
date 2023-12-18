@@ -9,29 +9,7 @@ class KccsPixUnitController(PixUnitController):
 
 
     def reset_drive_can_message(self):
-        message_0th_byte = '00000000' 
-        message_4th_byte = self.make_steering_message()
-        message_48th_bit = '1000'
-        # Steering mode.
-        message_52th_bit = '0101'
-        # Connect status. Always On
-        message_56th_bit = '0'
-        # Low speed mode. Always On
-        message_57th_bit = '1'
-        # Accel lock. Always Off
-        message_58th_bit = '0'
-        # 4WD Mode. Always On
-        message_59th_bit = '0'
-        # EPB
-        message_60th_bit = '0' 
-        # Front light
-        message_61th_bit = '0' 
-        # Emergency Stop
-        message_62th_bit = '0' 
-        # Drive mode
-        message_63th_bit = '0'
-        message = message_48th_bit + message_52th_bit + message_56th_bit + message_57th_bit + message_58th_bit + message_59th_bit + message_60th_bit + message_61th_bit + message_62th_bit + message_63th_bit
-
+        message_0th_byte = 
 
 
 
