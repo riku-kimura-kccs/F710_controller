@@ -6,7 +6,7 @@ import argparse
 from F710 import PixUnitControler 
 
 
-def loop(controler = PixUnitControler):
+def loop(controller = PixUnitController):
     # イベントの取得
     for e in pygame.event.get():
         # ジョイスティックのボタンの入力
@@ -14,18 +14,18 @@ def loop(controler = PixUnitControler):
         #     print('',e)
         if e.type == pygame.locals.JOYDEVICEREMOVED:
             print('@@@ Joystick Removed',e)
-            controler.waiting_joystick_connection()
+            controller.waiting_joystick_connection()
         elif e.type == pygame.locals.JOYBUTTONDOWN:
-            controler.button_down_action(e.button)
+            controller.button_down_action(e.button)
         elif e.type == pygame.locals.JOYBUTTONUP:
-            controler.button_up_action(e.button)
+            controller.button_up_action(e.button)
         elif e.type == pygame.locals.JOYAXISMOTION:
-            controler.axismotion_flag = True
-            # controler.steering_action()
+            controller.axismotion_flag = True
+            # controller.steering_action()
             # print('左スティック:', joystick.get_axis(0), joystick.get_axis(1))
             # print('右スティック:', joystick.get_axis(2), joystick.get_axis(3))
-    controler.make_can_message()
-    controler.can_send()
+    controller.make_can_message()
+    controller.can_send()
     # print(controler.can_message)
     
 def get_args():
@@ -58,7 +58,7 @@ def main():
     pygame.joystick.init()
     
     # ジョイスティック接続
-    controler = PixUnitControler(can_port_num,True)
+    controler = PixUnitController(can_port_num,True)
     # controler = PixUnitControler(can_port_num)
 
     # can setup
@@ -70,7 +70,7 @@ def main():
     try:
         while active:
             # loop
-            loop(controler)
+            loop(controller)
             time.sleep(0.015)
             #schedule.every(1).seconds.do(loop,controler=controler)
     
