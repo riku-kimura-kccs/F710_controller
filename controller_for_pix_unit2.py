@@ -25,12 +25,13 @@ def loop(controller = KccsPixUnitController):
         elif e.type == pygame.locals.JOYBUTTONDOWN:
             controller.button_down_action(e.button)
         elif e.type == pygame.locals.JOYBUTTONUP:
-            controller.button_up_action(e.button)
+     controller.button_up_action(e.button)
         elif e.type == pygame.locals.JOYAXISMOTION:
             controller.axismotion_flag = True
             # controller.steering_action()
             # print('左スティック:', joystick.get_axis(0), joystick.get_axis(1))
             # print('右スティック:', joystick.get_axis(2), joystick.get_axis(3))
+    if  
     controller.make_can_message()
     controller.can_send()
     # print(controler.can_message)
