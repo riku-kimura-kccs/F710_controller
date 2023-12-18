@@ -4,7 +4,7 @@ import pygame
 from pygame.locals import *
 
 
-class PixUnitControler:
+class PixUnitController:
     """Operating Unit2 of PIX with F710"""
     def __init__(self,can_port_num=0,print_flag = False):
         # set various flags

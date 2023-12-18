@@ -5,8 +5,15 @@ import pygame
 import argparse
 from F710 import PixUnitControler 
 
+class KccsPixUnitController(PixUnitController):
 
-def loop(controller = PixUnitController):
+
+    def reset_drive_can_message(self):
+    
+        self.can_message = '00000000000085C6'
+
+
+def loop(controller = KccsPixUnitController):
     # イベントの取得
     for e in pygame.event.get():
         # ジョイスティックのボタンの入力
