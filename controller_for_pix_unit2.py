@@ -32,7 +32,10 @@ class KccsPixUnitController(PixUnitController):
         message_63th_bit = '0'
         message = message_48th_bit + message_52th_bit + message_56th_bit + message_57th_bit + message_58th_bit + message_59th_bit + message_60th_bit + message_61th_bit + message_62th_bit + message_63th_bit
 
+        message_6th_byte = format(int(message, 2), '04X')
 
+
+        self.can_message = message_0th_byte + message_4th_byte + message_6th_byte
 
 
     def make_can_message(self):
@@ -114,7 +117,7 @@ def loop(controller = KccsPixUnitController):
         elif e.type == pygame.locals.JOYBUTTONDOWN:
             controller.button_down_action(e.button)
         elif e.type == pygame.locals.JOYBUTTONUP:
-     controller.button_up_action(e.button)
+            controller.button_up_action(e.button)
         elif e.type == pygame.locals.JOYAXISMOTION:
             controller.axismotion_flag = True
             # controller.steering_action()
@@ -156,7 +159,7 @@ def main():
     pygame.joystick.init()
     
     # ジョイスティック接続
-    controler = PixUnitController(can_port_num,True)
+    controller = PixUnitController(can_port_num,True)
     # controler = PixUnitControler(can_port_num)
 
     # can setup
