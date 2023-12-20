@@ -25,6 +25,7 @@ class PixUnitController:
         self.can_message = '00000000000085C6'
         # connect to joystick
         self.waiting_joystick_connection()
+        self.left_stick_axis_y = 0
 
 
     def waiting_joystick_connection(self):
