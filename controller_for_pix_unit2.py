@@ -64,7 +64,7 @@ class KccsPixUnitController(PixUnitController):
             print('Autoware Mode ON')
             self.autoware_mode_flag = True"""
         self.autoware_mode_flag = not self.autoware_mode_flag
-        reset_drive_can_message():
+        reset_drive_can_message()
 
         
     def make_other_control_signal_message(self):
