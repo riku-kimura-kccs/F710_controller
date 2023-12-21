@@ -215,7 +215,7 @@ def main():
         while active:
             # loop
             loop(controller)
-            time.sleep(0.015)
+            time.sleep(0.0151515151515151515151515151515)
             #schedule.every(1).seconds.do(loop,controler=controler)
     
     except( KeyboardInterrupt, SystemExit): # Exit with Ctrl-C

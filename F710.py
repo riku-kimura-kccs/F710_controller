@@ -20,7 +20,7 @@ class PixUnitController:
         
         self.can_id = 283
         self.can_port = 'can' + str(can_port_num)
-        self.can_bitrate = 500000
+        self.can_bitrate = 5000000
         # Default CAN message
         self.can_message = '00000000000085C6'
         # connect to joystick
