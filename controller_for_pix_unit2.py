@@ -166,8 +166,7 @@ def loop(controller = KccsPixUnitController):
             # controller.steering_action()
             # print('左スティック:', joystick.get_axis(0), joystick.get_axis(1))
             # print('右スティック:', joystick.get_axis(2), joystick.get_axis(3))
-    
-    
+        print(e)
     controller.make_can_message()
     controller.can_send()
     # print(controler.can_message)
@@ -202,7 +201,7 @@ def main():
     pygame.joystick.init()
     
     # ジョイスティック接続
-    controller = KccsPixUnitController(can_port_num)
+    controller = KccsPixUnitController(can_port_num, True)
     # controler = PixUnitControler(can_port_num)
 
     # can setup
@@ -215,7 +214,7 @@ def main():
         while active:
             # loop
             loop(controller)
-            time.sleep(0.0151515151515151515151515151515)
+            time.sleep(0.015)
             #schedule.every(1).seconds.do(loop,controler=controler)
     
     except( KeyboardInterrupt, SystemExit): # Exit with Ctrl-C
