@@ -3,6 +3,7 @@ import sys
 import time
 import pygame
 import argparse
+import can
 from F710 import PixUnitController , hex_2byte_invert, dec_to_signed_hex
 
 class KccsPixUnitController(PixUnitController):
@@ -29,7 +30,7 @@ class KccsPixUnitController(PixUnitController):
                         print('@@@ Joystick connected !')
                         self.joystick = pygame.joystick.Joystick(0)
                         active = False
-                time.sleep(0.015)
+                #time.sleep(0.015)
                 
         elif pygame.joystick.get_count() == 1:
             print('@@@ Joystick connected !')
@@ -146,7 +147,21 @@ class KccsPixUnitController(PixUnitController):
         print("throttle="+message_0th_byte + message_2th_byte)
         print(int(self.joystick.get_axis(1) * 1000))
         return message_0th_byte + message_2th_byte
-        
+    
+    def can_send(self):
+        os_str = 'cansend '+ self.can_port +' '+ str(self.can_id) +'#' + self.can_message
+        data_bytes = bytes.fromhex(self.can_message)
+        if self.print_flag:
+
+            bus = can.interface.Bus(bustype='virtual', channel=self.can_port, bitrate=self.can_bitrate)
+            message = can.Message(arbitration_id=self.can_id, data=data_bytes)
+            print(message)
+            print(os_str)
+        else:
+
+            bus = can.interface.Bus(bustype='socketcan', channel=self.can_port, bitrate=self.can_bitrate)
+            message = can.Message(arbitration_id=self.can_id, data=data_bytes)
+            bus.send(message)
 
 def loop(controller = KccsPixUnitController):
     # イベントの取得
@@ -188,6 +203,8 @@ def get_args():
     return(args)
 
 
+        #os.system(os_str)
+
 def main():
     # CLI引数受け取り
     args = sys.argv
@@ -214,7 +231,7 @@ def main():
         while active:
             # loop
             loop(controller)
-            time.sleep(0.015)
+            #time.sleep(0.015)
             #schedule.every(1).seconds.do(loop,controler=controler)
     
     except( KeyboardInterrupt, SystemExit): # Exit with Ctrl-C
