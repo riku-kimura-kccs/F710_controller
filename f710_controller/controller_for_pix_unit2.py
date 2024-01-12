@@ -218,7 +218,9 @@ def main():
     pygame.joystick.init()
     
     # ジョイスティック接続
-    controller = KccsPixUnitController(can_port_num, True)
+    controller = KccsPixUnitController(can_port_num)
+    #controller = KccsPixUnitController(can_port_num, True)
+    # can接続無しでデバッグしたい場合はこっち
     # controler = PixUnitControler(can_port_num)
 
     # can setup
